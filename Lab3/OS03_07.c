@@ -7,10 +7,14 @@
 
 int main() {
 	char* const argv[] = {"ps", "-eF", 0};
-	execv("./OS03_05_1", argv);
+	
 	for (int i = 0; i < 100; i++) {
 		sleep(2);
 		printf("OS03_07 PID: %d-#%d\n", getpid(), i);
+		if(i==2)
+		{
+			execv("./OS03_05_1", argv);
+		}
 	}
 
 	exit(0);
