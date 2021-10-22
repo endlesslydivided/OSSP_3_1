@@ -27,7 +27,8 @@ int main()
 void getProcessPriority(HANDLE hp) {
 	DWORD prty = GetPriorityClass(hp);
 
-	switch (prty) {
+	switch (prty) 
+	{
 		case IDLE_PRIORITY_CLASS: cout << "ProcessPriority: IDLE_PRIORITY_CLASS\n"; break;
 		case BELOW_NORMAL_PRIORITY_CLASS: cout << "ProcessPriority: BELOW_NORMAL_PRIORITY_CLASS\n"; break;
 		case NORMAL_PRIORITY_CLASS: cout << "ProcessPriority: NORMAL_PRIORITY_CLASS\n"; break;

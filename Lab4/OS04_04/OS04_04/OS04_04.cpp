@@ -1,7 +1,7 @@
 ﻿#include <Windows.h>
 #include <iostream>
 
-DWORD WINAPI OS04_04_T1() {
+DWORD  OS04_04_T1() {
     DWORD pid = GetCurrentProcessId();
     DWORD tid = GetCurrentThreadId();
 
@@ -17,7 +17,7 @@ DWORD WINAPI OS04_04_T1() {
     return 0;
 }
 
-DWORD WINAPI OS04_04_T2() {
+DWORD  OS04_04_T2() {
     DWORD pid = GetCurrentProcessId();
     DWORD tid = GetCurrentThreadId();
 
@@ -42,7 +42,7 @@ int main() {
     HANDLE hChild1 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)OS04_04_T1, NULL, 0, &childId_T1);
     HANDLE hChild2 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)OS04_04_T2, NULL, 0, &childId_T2);
 
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < 100; ++i) {
         Sleep(1000);
         std::cout << i << ". Parent Thread PID = " << pid << ", TID = " << tid << std::endl;
 
