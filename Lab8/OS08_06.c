@@ -8,7 +8,10 @@
 
 int main() {
 	int count = 0;
+	
 	struct timespec start, end, proc;
+	long int tn;   
+	int ts;   
 	clock_gettime(CLOCK_REALTIME, &start);
 	for(;;) {
 		count++;
@@ -16,8 +19,11 @@ int main() {
 		if(proc.tv_sec == 2) break;
 	}
 	clock_gettime(CLOCK_REALTIME, &end);	
-	printf("2 c: %d\n", count);
-	printf("time: %lds %ldns\n", end.tv_sec - start.tv_sec, end.tv_nsec - 		start.tv_nsec);
+	tn=1000000000*(end.tv_sec - start.tv_sec)+(end.tv_nsec - start.tv_nsec);
+	ts=end.tv_sec - start.tv_sec;
+
+	printf("Count: %d\n", count);
+	printf("Time: %lds %ldns\n", ts, tn);
 	
 	exit(0);
 }

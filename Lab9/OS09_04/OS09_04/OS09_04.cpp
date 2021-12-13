@@ -24,15 +24,14 @@ int main()
 BOOL printWatchRowFileTxt(LPWSTR FileName, DWORD mlsec) 
 {
     PLARGE_INTEGER fileSize = new LARGE_INTEGER();
-    char* path = new char[MAX_PATH + 1];
-    char* cFileName = new char[wcslen(FileName) * sizeof(char) + 1];
+    LPWSTR path = new wchar_t[MAX_PATH + 1];
+    LPWSTR cFileName = new wchar_t[wcslen(FileName) * sizeof(char) + 1];
 
-    wcstombs(cFileName,FileName , strlen(cFileName));
     int i = 0;
     int lenName = 0;
     while (true)
     {
-        path[lenName++] = cFileName[i++];
+        path[lenName++] = FileName[i++];
         if (FileName[i] == '\0')
         {
             while (path[--lenName] != '\\')
@@ -43,16 +42,16 @@ BOOL printWatchRowFileTxt(LPWSTR FileName, DWORD mlsec)
             break;
         }
     }
-    printf("File catalog:%s \n", path);
+    printf("File catalog:%ls \n", path);
     try
     {
-        HANDLE notif = FindFirstChangeNotification((LPCWSTR)path,false,FILE_NOTIFY_CHANGE_ATTRIBUTES);
+        HANDLE notif = FindFirstChangeNotification(path,false,FILE_NOTIFY_CHANGE_SIZE);
         clock_t t1 = clock();
         clock_t t2 = clock();
         DWORD dwWaitStatus;
-        printf("\nWatch started timestamp %d:", t1);
         while (true)
         {
+            printf("\nWatch started timestamp %d:", t1);
             dwWaitStatus = WaitForSingleObject(notif, INFINITE);
             switch (dwWaitStatus)
             {
@@ -69,7 +68,7 @@ BOOL printWatchRowFileTxt(LPWSTR FileName, DWORD mlsec)
                         HANDLE of = CreateFile(
                             FileName,
                             GENERIC_READ,
-                            FILE_SHARE_READ,
+                            FILE_SHARE_READ | FILE_SHARE_WRITE,
                             NULL,
                             OPEN_ALWAYS,
                             FILE_ATTRIBUTE_NORMAL,

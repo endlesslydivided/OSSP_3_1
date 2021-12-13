@@ -25,6 +25,7 @@ int main() {
 		for(int i = 0; i < CPU_SETSIZE; i++) {
 			is = CPU_ISSET(i, &set);
 			if(is) printf("CPU = %i is %s\n", i, "set");
+			printf("CPU = %i \n", i);
 		}
 	}
 	else printf("sched_getaffinity error");	

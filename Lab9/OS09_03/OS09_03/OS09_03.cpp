@@ -50,7 +50,6 @@ BOOL insRowFileTxt(LPWSTR FileName, LPWSTR str, DWORD row)
             CloseHandle(of);
             throw "Open file failed";
         }
-        LockFile(of, 0, 0, 0, 0);
         if (GetFileSizeEx(of, fileSize))
         {
             char* cstr = new char[wcslen(str) * sizeof(char)];

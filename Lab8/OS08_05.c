@@ -11,10 +11,10 @@ int main() {
 	tmptr = gmtime(&t);
 	printf("%d.", tmptr->tm_mday);
 	printf("%d.", tmptr->tm_mon + 1);
-	printf("%d.", tmptr->tm_year);
+	printf("%d", tmptr->tm_year+1900);
 	printf(" ");
-	printf("%d.", tmptr->tm_hour);
-	printf("%d.", tmptr->tm_min);
+	printf("%d:", tmptr->tm_hour + 3);
+	printf("%d:", tmptr->tm_min);
 	printf("%d\n", tmptr->tm_sec);
 
 	exit(0);

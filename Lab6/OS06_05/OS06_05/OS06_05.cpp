@@ -8,12 +8,12 @@ using namespace std;
 void sh(HANDLE pheap);
 
 int main() {
-    HANDLE heap = HeapCreate(HEAP_NO_SERIALIZE | HEAP_ZERO_MEMORY, 4096 * KB, 4096 * 2 * KB);
+    HANDLE heap = HeapCreate(HEAP_NO_SERIALIZE | HEAP_ZERO_MEMORY, 4096 * KB, 0);
 
     cout << "---------------Before---------------\n";
     sh(heap);
 
-    int* m = (int*)HeapAlloc(heap, HEAP_NO_SERIALIZE | HEAP_ZERO_MEMORY, 500 * sizeof(int));
+    int* m = (int*)HeapAlloc(heap, HEAP_NO_SERIALIZE | HEAP_ZERO_MEMORY, 300000 * sizeof(int));
     cout << "-- m = " << hex << m << "\n";
 
     cout << "\n------------After--------------\n";

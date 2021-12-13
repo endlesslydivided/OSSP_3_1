@@ -17,7 +17,7 @@ int main() {
             WaitForSingleObject(hs, INFINITE);
         }
         if (i == 60) {
-            ReleaseMutex(hs);
+            ReleaseSemaphore(hs, 1, 0);
         }
 
         cout << i << " OS07_04B pid = " << pid << ", time: " << clock() - start << endl;

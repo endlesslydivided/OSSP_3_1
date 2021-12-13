@@ -45,7 +45,7 @@ BOOL delRowFileTxt(LPWSTR FileName, DWORD row)
         }
         HANDLE of = CreateFile(
             FileName,
-            GENERIC_READ|GENERIC_WRITE,
+            GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ,
             NULL,
             OPEN_ALWAYS,
